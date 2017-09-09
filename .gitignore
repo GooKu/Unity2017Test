@@ -1,0 +1,8 @@
+UnityTest.userprefs
+.vs
+Library
+
+/*.csproj
+/*.sln
+*.meta
+!*.*.meta
