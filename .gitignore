@@ -1,4 +1,4 @@
-UnityTest.userprefs
+/*.userprefs
 .vs
 Library
 
@@ -6,3 +6,4 @@ Library
 /*.sln
 *.meta
 !*.*.meta
+/Temp
