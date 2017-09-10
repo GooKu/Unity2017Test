@@ -13,7 +13,7 @@ public class ShowHideTest : MonoBehaviour
     private UnityEngine.UI.Text resultText;
 
     private List<GameObject> activeBoxList = new List<GameObject>();
-    private Dictionary<GameObject, Renderer[]> renderDic = new Dictionary<GameObject, Renderer[]>();
+    private Dictionary<int, Renderer[]> renderDic = new Dictionary<int, Renderer[]>();
 
     private Vector3 moveOutPosition = new Vector3(99999, 99999, 99999);
     private int hideLayer;
@@ -26,7 +26,7 @@ public class ShowHideTest : MonoBehaviour
             GameObject testObj = Instantiate(activeTestBoxSample);
             activeBoxList.Add(testObj);
             Renderer[] renders = testObj.GetComponentsInChildren<Renderer>();
-            renderDic.Add(testObj, renders);
+            renderDic.Add(i, renders);
         }
     }
 
@@ -35,7 +35,7 @@ public class ShowHideTest : MonoBehaviour
         for (int i = 0; i < testNumber; i++)
         {
             activeBoxList[i].transform.position = Vector3.zero;
-            Renderer[] renders = renderDic[activeBoxList[i]];
+            Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
             {
                 renders[j].enabled = true;
@@ -57,18 +57,16 @@ public class ShowHideTest : MonoBehaviour
         for (int i = 0; i < testNumber; i++)
         {
             activeBoxList[i].transform.position = Vector3.zero;
-            Renderer[] renders = renderDic[activeBoxList[i]];
+            Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
-            {
                 renders[j].gameObject.layer = 0;
-            }
         }
 
         Stopwatch sw = new Stopwatch();
         sw.Start();
         for (int i = 0; i < testNumber; i++)
         {
-            Renderer[] renders = renderDic[activeBoxList[i]];
+            Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
                 renders[j].enabled = enable;
         }
@@ -81,7 +79,7 @@ public class ShowHideTest : MonoBehaviour
         for (int i = 0; i < testNumber; i++)
         {
             activeBoxList[i].SetActive(true);
-            Renderer[] renders = renderDic[activeBoxList[i]];
+            Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
             {
                 renders[j].enabled = true;
@@ -106,7 +104,7 @@ public class ShowHideTest : MonoBehaviour
         {
             activeBoxList[i].SetActive(true);
             activeBoxList[i].transform.position = Vector3.zero;
-            Renderer[] renders = renderDic[activeBoxList[i]];
+            Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
                 renders[j].enabled = true;
         }
@@ -117,7 +115,7 @@ public class ShowHideTest : MonoBehaviour
         sw.Start();
         for (int i = 0; i < testNumber; i++)
         {
-            Renderer[] renders = renderDic[activeBoxList[i]];
+            Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
                 renders[j].gameObject.layer = layer;
         }
