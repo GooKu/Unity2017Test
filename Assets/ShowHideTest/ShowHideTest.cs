@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
 
-public class ActiveTest : MonoBehaviour
+public class ShowHideTest : MonoBehaviour
 {
     [SerializeField]
     private GameObject activeTestBoxSample;
