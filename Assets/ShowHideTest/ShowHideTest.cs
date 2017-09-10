@@ -42,6 +42,7 @@ public class ShowHideTest : MonoBehaviour
         for (int i = 0; i < testNumber; i++)
         {
             activeBoxList[i].transform.position = Vector3.zero;
+            activeBoxList[i].transform.localScale = Vector3.one;
             Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
             {
@@ -64,6 +65,7 @@ public class ShowHideTest : MonoBehaviour
         for (int i = 0; i < testNumber; i++)
         {
             activeBoxList[i].transform.position = Vector3.zero;
+            activeBoxList[i].transform.localScale = Vector3.one;
             Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
                 renders[j].gameObject.layer = 0;
@@ -86,6 +88,7 @@ public class ShowHideTest : MonoBehaviour
         for (int i = 0; i < testNumber; i++)
         {
             activeBoxList[i].SetActive(true);
+            activeBoxList[i].transform.localScale = Vector3.one;
             Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
             {
@@ -111,6 +114,7 @@ public class ShowHideTest : MonoBehaviour
         {
             activeBoxList[i].SetActive(true);
             activeBoxList[i].transform.position = Vector3.zero;
+            activeBoxList[i].transform.localScale = Vector3.one;
             Renderer[] renders = renderDic[i];
             for (int j = 0; j < renders.Length; j++)
                 renders[j].enabled = true;
@@ -129,6 +133,31 @@ public class ShowHideTest : MonoBehaviour
 
         sw.Stop();
         showResult($"LayerMask, hide layer:${isHideLayer}, result:{sw.ElapsedMilliseconds}ms");
+    }
+
+    public void OnScaleTest(bool isScaleZero)
+    {
+        for (int i = 0; i < testNumber; i++)
+        {
+            activeBoxList[i].SetActive(true);
+            activeBoxList[i].transform.position = Vector3.zero;
+            Renderer[] renders = renderDic[i];
+            for (int j = 0; j < renders.Length; j++)
+            {
+                renders[j].enabled = true;
+                renders[j].gameObject.layer = 0;
+            }
+        }
+
+        Vector3 scale = isScaleZero ? Vector3.zero : Vector3.one;
+
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
+        for (int i = 0; i < testNumber; i++)
+            activeBoxList[i].transform.localScale = scale;
+
+        sw.Stop();
+        showResult($"Scale, scale zero:${isScaleZero}, result:{sw.ElapsedMilliseconds}ms");
     }
 
     private void showResult(string result)
