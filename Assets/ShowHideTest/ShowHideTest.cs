@@ -11,6 +11,8 @@ public class ShowHideTest : MonoBehaviour
     private int testNumber = 10000;
     [SerializeField]
     private UnityEngine.UI.Text resultText;
+    [SerializeField]
+    private UnityEngine.UI.Text fpsText;
 
     private List<GameObject> activeBoxList = new List<GameObject>();
     private Dictionary<int, Renderer[]> renderDic = new Dictionary<int, Renderer[]>();
@@ -28,6 +30,11 @@ public class ShowHideTest : MonoBehaviour
             Renderer[] renders = testObj.GetComponentsInChildren<Renderer>();
             renderDic.Add(i, renders);
         }
+    }
+
+    private void Update()
+    {
+        fpsText.text = string.Format("{0}fps",(int)(1/Time.deltaTime));
     }
 
     public void OnActiveGameobjectTest(bool isActive)
