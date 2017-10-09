@@ -8,3 +8,9 @@ Each test case files exist under Asset/[test case name]
 This case test the performance of many ways that control show/hide GameObject view.  
 
 [Introduction](http://goocoding.blogspot.tw/2017/09/unity.html)
+
+
+## [ResourcesLoadTest](https://github.com/GooKu/Unity2017Test/tree/master/Assets/ResourcesLoadTest)
+This case test the performance of Resource.Load.  
+
+[Introduction](http://goocoding.blogspot.tw/2017/10/unityresourcesload.html)
