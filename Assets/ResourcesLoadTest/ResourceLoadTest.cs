@@ -33,13 +33,14 @@ public class ResourceLoadTest : MonoBehaviour
     {
         int resourceCount = resourceName.Length;
         Dictionary<string, GameObject> resourcesDic = new Dictionary<string, GameObject>();
+        GameObject gObj;
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
         for (int j = 0; j < resourceCount; j++)
         {
             resourcesDic.Add(resourceName[j], Resources.Load<GameObject>(resourceName[j]));
         }
-        GameObject gObj;
-        Stopwatch sw = new Stopwatch();
-        sw.Start();
+
         for (int i = 0; i < testNumber; i++)
         {
             for (int j = 0; j < resourceCount; j++)
